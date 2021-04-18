@@ -1,44 +1,44 @@
-# FSDM  
-Fuzzy Systems Dynamics Modeling Package
+#FSDM
+Paket Pemodelan Dinamika Sistem Fuzzy
 
-This project is the latest version of the Fuzzy Systems Dynamics Modeling (FSDM) package. It includes a graphical user interface (Logic Laboratory) for building FSDM models, specifying scenarios, running the model on the scenarios, and displaying results. Using the GUI to build models and scenarios assures that the model and scenario files are properly formatted. It also simplifies the process of running the models and analyzing the results. Advanced users may also run model scenarios programmatically; loading models with the createFuzzyModel function, loading scenarios with the createFuzzyScenario function, and running the model with the runFuzzyModel function.
+Proyek ini adalah versi terbaru dari paket Fuzzy Systems Dynamics Modeling (FSDM). Ini mencakup antarmuka pengguna grafis (Laboratorium Logika) untuk membangun model FSDM, menentukan skenario, menjalankan model pada skenario, dan menampilkan hasil. Menggunakan GUI untuk membangun model dan skenario memastikan bahwa model dan file skenario diformat dengan benar. Ini juga menyederhanakan proses menjalankan model dan menganalisis hasilnya. Pengguna mahir juga dapat menjalankan skenario model secara terprogram; memuat model dengan fungsi createFuzzyModel, memuat skenario dengan fungsi createFuzzyScenario, dan menjalankan model dengan fungsi runFuzzyModel.
 
-## Installing the Package and Dependencies
-The Fuzzy Systems Dynamics Modeling package is a package for the R computing language environment. The incorporation of the FSDM into an R package simplifies installation of all the software needed to use it. The package was developed using the latest version of R at the time (3.6.0) and has not been tested with older versions. The R language can be installed from www.r-project.org. It is free and open source. Once R has been installed the FSDM by starting the R console and copying and pasting the following lines of code into it:
+Menginstal Paket dan Dependensi
+Paket Fuzzy Systems Dynamics Modeling adalah paket untuk lingkungan bahasa komputasi R. Penggabungan FSDM ke dalam paket R menyederhanakan penginstalan semua perangkat lunak yang diperlukan untuk menggunakannya. Paket ini dikembangkan menggunakan versi R terbaru pada saat itu (3.6.0) dan belum diuji dengan versi yang lebih lama. Bahasa R dapat diinstal dari www.r-project.org. Ini gratis dan open source. Setelah R diinstal, FSDM dengan memulai konsol R dan menyalin dan menempelkan baris kode berikut ke dalamnya:
 
 ```
-#Set the CRAN mirror for installing package dependencies
-#Feel free to change to different mirror if desired
+#Set CRAN mirror untuk instal package dependencies.
+
 if (is.null(getOption("repos")["CRAN"])) {
   options(repos = c(CRAN = "https://cran.rstudio.com/"))
 }
-#Install the devtools package if not already installed
-#Makes it easier to install FSDM package from GitHub and dependencies from CRAN
+#Install devtools package jika belum.
+
 if (!library("devtools", logical.return = TRUE)) install.packages("devtools")
-#Install the FSDM package from GitHub
-#This also installs all other packages that FSDM depends on
+#Install FSDM package dari GitHub
+
 devtools::install_github("gregorbj/FSDM")
 
 ```
 
-**Note for Linux users**: The XML package is one of the dependencies that will be installed if it is not already installed on your system. Successful installation requires that the *lib2xml-dev* software library be installed on your system in order for the XML package to compile from the source files. I suggest that before you run *devtools:install_github("gregorbj/FSDM")* you check whether the XML package is installed and install it if it is not. If the *lib2xml-dev* software library is not installed on your computer and you're running Ubuntu and Debian, you can install by running *sudo apt-get install libxml2-dev* in the Linux terminal program you use.
+** Catatan **: Paket XML adalah salah satu dependensi yang akan diinstal jika belum diinstal di sistem Anda. Penginstalan yang berhasil mengharuskan pustaka perangkat lunak * lib2xml-dev * diinstal pada sistem Anda agar paket XML dapat dikompilasi dari file sumber. Saya menyarankan sebelum Anda menjalankan * devtools: install_github ("gregorbj / FSDM") * Anda memeriksa apakah paket XML telah diinstal dan menginstalnya jika belum. Jika pustaka perangkat lunak * lib2xml-dev * tidak diinstal di komputer Anda dan Anda menjalankan Ubuntu dan Debian, Anda dapat menginstalnya dengan menjalankan * sudo apt-get install libxml2-dev * di program terminal Linux yang Anda gunakan.
 
-## Running 
-You may wish to start by first creating a project folder and then copying the demonstration models and scenarios from the installed package to your project folder. Once you have created your project folder, you can copy the demonstration models/scenarios to it by entering the following in the R console. Replace the *"PROJECT_FOLDER_PATH"* in the code with the full path to the project folder (e.g. "C:/My_FSDM_Project").
+## Running
+Anda mungkin ingin memulai dengan membuat folder proyek terlebih dahulu dan kemudian menyalin model dan skenario demonstrasi dari paket yang diinstal ke folder proyek Anda. Setelah Anda membuat folder proyek Anda, Anda dapat menyalin model / skenario demonstrasi ke sana dengan memasukkan yang berikut ini di konsol R. Ganti * "PROJECT_FOLDER_PATH" * dalam kode dengan jalur lengkap ke folder proyek (mis. "C: / My_FSDM_Project").
 ```
 copyDemoModels("PROJECT_FOLDER_PATH")
 ```
 
-The Logic Laboratory graphical user interface can be started by entering the following in the R console:
+Antarmuka pengguna grafis Laboratorium Logika dapat dimulai dengan memasukkan yang berikut ini di konsol R:
 ```
 FSDM::runLogicLab()
 ```
 
-Starting the Logic Laboratory in this way will open up the application in a web browser window using the default web browser for your computer. Note that the application does not work correctly in the Microsoft Edge browser because the graphs showing results will not be displayed. The application does work in the Chrome, Firefox, and Brave browsers. It may work in other browsers as well but has not been tested. If your default browser is Microsoft Edge, you will need to change it to one of the others.
+Memulai Laboratorium Logika dengan cara ini akan membuka aplikasi di jendela browser web menggunakan browser web default untuk komputer Anda. Perhatikan bahwa aplikasi tidak bekerja dengan benar di browser Microsoft Edge karena grafik yang menunjukkan hasil tidak akan ditampilkan. Aplikasi ini berfungsi di browser Chrome, Firefox, dan Brave. Ini mungkin berfungsi di browser lain juga tetapi belum diuji. Jika browser default Anda adalah Microsoft Edge, Anda perlu mengubahnya ke salah satu browser lainnya.
 
-Note that after you close the browser window that the Logic Laboratory is running in, when you return focus to the R console window you need to press the escape key on your keyboard to return to the console command line.
+Perhatikan bahwa setelah Anda menutup jendela browser tempat Laboratorium Logika berjalan, saat Anda mengembalikan fokus ke jendela konsol R, Anda perlu menekan tombol escape pada keyboard Anda untuk kembali ke baris perintah konsol.
 
-The users guide in the *documentation* folder of the installed package provides information on how to use the Logic Laboratory. It is out of date with respect to some of the features and look of some of the screens, but will provide you with some basic orientation. It will be updated in the coming weeks and made available as a standard R vignette that will be easy to call up from the R console.
+Panduan pengguna di folder * dokumentasi * dari paket yang diinstal memberikan informasi tentang cara menggunakan Laboratorium Logika. Ini sudah usang sehubungan dengan beberapa fitur dan tampilan beberapa layar, tetapi akan memberi Anda beberapa orientasi dasar. Ini akan diperbarui dalam beberapa minggu mendatang dan tersedia sebagai sketsa R standar yang akan mudah dipanggil dari konsol R.
 
-**Note**: The Logic Laboratory currently only allows you to be working on one model in a session. If you want to switch from working on one model to another, you must exit the Logic Laboratory and restart it. Note that you can work on any number of scenarios in one session however.
+**Catatan**: Laboratorium Logika saat ini hanya memungkinkan Anda mengerjakan satu model dalam satu sesi. Jika Anda ingin beralih dari bekerja pada satu model ke model lainnya, Anda harus keluar dari Laboratorium Logika dan memulai ulang. Perhatikan bahwa Anda dapat mengerjakan sejumlah skenario dalam satu sesi.
 
